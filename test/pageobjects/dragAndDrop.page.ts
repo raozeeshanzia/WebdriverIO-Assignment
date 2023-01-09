@@ -1,5 +1,4 @@
 import ElementUtil from "../../utils/elementUtil.js";
-import * as process from "process";
 import elementUtil from "../../utils/elementUtil.js";
 
 class DragAndDropPage {
