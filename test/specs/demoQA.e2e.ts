@@ -18,37 +18,37 @@ describe('My Login application', () => {
         await expect(DemoHomePage.webIcon).toBeExisting();
 
     });
-    //  it('Verify user can enter new data into the table', async () => {
-    //       await DemoHomePage.clickOnElementBtn();
-    //       await ElementPage.clickOnWebTables();
-    //       await ElementPage.clickOnAddBtn();
-    //       await ElementPage.setValueOfFirstName(TableFormData.firstname);
-    //       await ElementPage.setValueOfLastName(TableFormData.lastName);
-    //       await ElementPage.setValueOfEmail(TableFormData.userEmail);
-    //       await ElementPage.setValueOfAge(TableFormData.age);
-    //       await ElementPage.setValueOfSalary(TableFormData.salary);
-    //       await ElementPage.setValueOfDepartment(TableFormData.department);
-    //       await ElementPage.clickOnSubmitBtn();
-    //       expect(await ElementPage.verifyValueInTable(TableFormData.firstname));
-    //       expect(await ElementPage.verifyValueInTable(TableFormData.lastName));
-    //       expect(await ElementPage.verifyValueInTable(TableFormData.userEmail));
-    //       expect(await ElementPage.verifyValueInTable(TableFormData.age));
-    //       expect(await ElementPage.verifyValueInTable(TableFormData.salary));
-    //       expect(await ElementPage.verifyValueInTable(TableFormData.department));
-    //
-    // });
-    //
-    // it('Verify user can edit the row in a table', async () => {
-    //     await DemoHomePage.clickOnElementBtn();
-    //     await ElementPage.clickOnWebTables();
-    //     await ElementPage.clickOnEditBtn();
-    //     await ElementPage.setValueOfFirstName(EditTableData.firstName);
-    //     await ElementPage.setValueOfLastName(EditTableData.lastName)
-    //     await ElementPage.clickOnSubmitBtn();
-    //     expect(await ElementPage.verifyValueInTable(EditTableData.firstName));
-    //     expect(await ElementPage.verifyValueInTable(EditTableData.lastName));
-    //
-    // });
+     it('Verify user can enter new data into the table', async () => {
+          await DemoHomePage.clickOnElementBtn();
+          await ElementPage.clickOnWebTables();
+          await ElementPage.clickOnAddBtn();
+          await ElementPage.setValueOfFirstName(TableFormData.firstname);
+          await ElementPage.setValueOfLastName(TableFormData.lastName);
+          await ElementPage.setValueOfEmail(TableFormData.userEmail);
+          await ElementPage.setValueOfAge(TableFormData.age);
+          await ElementPage.setValueOfSalary(TableFormData.salary);
+          await ElementPage.setValueOfDepartment(TableFormData.department);
+          await ElementPage.clickOnSubmitBtn();
+          expect(await ElementPage.verifyValueInTable(TableFormData.firstname));
+          expect(await ElementPage.verifyValueInTable(TableFormData.lastName));
+          expect(await ElementPage.verifyValueInTable(TableFormData.userEmail));
+          expect(await ElementPage.verifyValueInTable(TableFormData.age));
+          expect(await ElementPage.verifyValueInTable(TableFormData.salary));
+          expect(await ElementPage.verifyValueInTable(TableFormData.department));
+
+    });
+
+    it('Verify user can edit the row in a table', async () => {
+        await DemoHomePage.clickOnElementBtn();
+        await ElementPage.clickOnWebTables();
+        await ElementPage.clickOnEditBtn();
+        await ElementPage.setValueOfFirstName(EditTableData.firstName);
+        await ElementPage.setValueOfLastName(EditTableData.lastName)
+        await ElementPage.clickOnSubmitBtn();
+        expect(await ElementPage.verifyValueInTable(EditTableData.firstName));
+        expect(await ElementPage.verifyValueInTable(EditTableData.lastName));
+
+    });
 
     it('Verify user can submit the form', async () => {
         await DemoHomePage.clickOnFormbBtn();
@@ -76,25 +76,25 @@ describe('My Login application', () => {
 
     });
 
-    // it('Verify the progress bar', async () => {
-    //     await DemoHomePage.clickOnWidgetsBtn();
-    //     await ProgressBarPage.clickOnPrgressBarBtn();
-    //     await ProgressBarPage.clickOnStartBtn();
-    //     expect(await ProgressBarPage.verifyResetBtnIsDisplay());
-    //     expect(await ProgressBarPage.getValueOfProgress()).toMatch("100");
-    //
-    //
-    // });
-    //
-    // it('Verify user can drag and drop', async () => {
-    //     await DemoHomePage.clickOnInteractionBtn();
-    //     await DragAndDropPage.clickOnDraggableBtn();
-    //     await DragAndDropPage.clickOnContainerRes();
-    //     await dragAndDropPage.dragAndDrop();
-    //     console.log("----Style value----:"+await DragAndDropPage.getValueOfDragElement());
-    //     expect(await DragAndDropPage.getValueOfDragElement()).toHaveTextContaining("top: 50px");
-    //
-    // });
+    it('Verify the progress bar', async () => {
+        await DemoHomePage.clickOnWidgetsBtn();
+        await ProgressBarPage.clickOnPrgressBarBtn();
+        await ProgressBarPage.clickOnStartBtn();
+        expect(await ProgressBarPage.verifyResetBtnIsDisplay());
+        expect(await ProgressBarPage.getValueOfProgress()).toMatch("100");
+
+
+    });
+
+    it('Verify user can drag and drop', async () => {
+        await DemoHomePage.clickOnInteractionBtn();
+        await DragAndDropPage.clickOnDraggableBtn();
+        await DragAndDropPage.clickOnContainerRes();
+        await dragAndDropPage.dragAndDrop();
+        console.log("----Style value----:"+await DragAndDropPage.getValueOfDragElement());
+        expect(await DragAndDropPage.getValueOfDragElement()).toHaveTextContaining("top: 50px");
+
+    });
 
 
 })
