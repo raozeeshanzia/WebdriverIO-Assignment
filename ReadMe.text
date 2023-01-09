@@ -1,0 +1,4 @@
+All Page Define in test/pageObject folder.
+All Util Class define in util folder
+Test data define in test/data folder
+To run test cases run "npm run wido"
