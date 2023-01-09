@@ -3,7 +3,6 @@ import Page from './page.js';
 import formData from '../data/formData.json' assert { type: "json" };
 import WebTableUtil from "../../utils/WebTableUtil.js";
 import * as path from "path";
-import { dirname } from 'path';
 
 
 class FormPage extends Page {

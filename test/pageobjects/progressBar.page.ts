@@ -43,8 +43,7 @@ class ProgressBarPage extends Page{
        return  await ElementUtil.waitUntilElementIsDisplay(await this.resetBtn);
 
     }
-
-
+    
 
 }
 export default new ProgressBarPage();
