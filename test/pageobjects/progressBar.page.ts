@@ -1,49 +1,41 @@
-import ElementUtil from "../../utils/elementUtil.js";
 import Page from "./page.js";
 
-class ProgressBarPage extends Page{
+class ProgressBarPage extends Page {
     /**
-     * define selectors using getter methods
+     * define selectors using methods
      */
-
-    public get progressBtn() {
-        return $(".collapse.element-list.show > .menu-list > li:nth-of-type(5) > .text");
-    }
-
-    public get startBtn() {
-        return $("#startStopButton")
-    }
-
-    public get resetBtn() {
-        return $("#resetButton")
-    }
-
-    public get progressBar() {
-        return $("div[role='progressbar']")
-    }
+    selectorStartBtn: string = "#startStopButton";
+    selectorResetBtn: string = "#resetButton";
+    selectorProgressBar: string = ".show .menu-list .btn-light:nth-of-type(5)";
 
     /**
      * a method to encapsule automation code to interact with the page
      * e.g. to login using username and password
      */
 
-    public async clickOnPrgressBarBtn() {
-        await ElementUtil.clickOnElement(await this.progressBtn);
+    public async clickOnProgressBarBtn() {
+        let elementProgressBar = await this.getElement(this.selectorProgressBar);
+        await elementProgressBar.click();
     }
 
-    public async getValueOfProgress(): Promise<any> {
-        return this.progressBar.getAttribute("aria-valuenow");
+
+    public async getValueOfProgress(): Promise<string> {
+        let elementProgressBar = await this.getElement(this.selectorProgressBar);
+        return elementProgressBar.getAttribute("aria-valuenow");
     }
 
     public async clickOnStartBtn() {
-        await ElementUtil.clickOnElement(await this.startBtn);
+        let elementStartBtn = await this.getElement(this.selectorStartBtn);
+        await elementStartBtn.click();
     }
 
-    public async verifyResetBtnIsDisplay() {
-       return  await ElementUtil.waitUntilElementIsDisplay(await this.resetBtn);
+    public async checkResetBtnIsDisplay(): Promise<true | void> {
+        let elementResetBtn = await this.getElement(this.selectorResetBtn);
+        return await elementResetBtn.waitForDisplayed({timeout: 5000});
 
     }
-    
+
 
 }
+
 export default new ProgressBarPage();

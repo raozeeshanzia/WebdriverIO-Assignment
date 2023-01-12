@@ -1,26 +1,15 @@
-import ElementUtil from "../../utils/elementUtil.js";
-import elementUtil from "../../utils/elementUtil.js";
+import Page from "./page.js";
 
-class DragAndDropPage {
+
+class DragAndDropPage extends Page {
     /**
-     * define selectors using getter methods
+     * define selectors using String methods
      */
+    draggableElement: string = '.ui-widget-content.ui-draggable-handle';
+    draggableBtn: string = '.show .menu-list li:nth-of-type(5)';
 
-    public get draggableElement() {
-        return $("div#containmentWrapper > .draggable.ui-draggable.ui-draggable-handle.ui-widget-content")
-    }
+    containerRestrictedBtn = 'a#draggableExample-tab-containerRestriction';
 
-    public get targetElement() {
-        return $("div#containmentWrapper")
-    }
-
-    public get draggableBtn() {
-        return $(".collapse.element-list.show > .menu-list > li:nth-of-type(5)")
-    }
-
-    public get containerRestricted() {
-        return $("a#draggableExample-tab-containerRestriction");
-    }
 
     /**
      * a method to encapsule automation code to interact with the page
@@ -28,22 +17,26 @@ class DragAndDropPage {
      */
 
     public async clickOnDraggableBtn() {
-        await ElementUtil.clickOnElement(await this.draggableBtn);
+        let elementDraggableBtn = await this.getElement(this.draggableBtn);
+        await elementDraggableBtn.click();
     }
 
     public async clickOnContainerRes() {
-        await ElementUtil.clickOnElement(await this.containerRestricted);
+        let elementContainerResBtn = await this.getElement(this.containerRestrictedBtn);
+        await elementContainerResBtn.click();
     }
 
     public async dragAndDrop() {
-        await this.draggableElement.dragAndDrop({x: 0, y: 50});
+        let elementDraggableBox = await this.getElement(this.draggableElement);
+        await elementDraggableBox.dragAndDrop({x: 0, y: 50})
     }
 
-    public async getValueOfDragElement():Promise<any> {
-        return await elementUtil.getAttributeValue(await this.draggableElement, "style")
+    public async getValueOfDragElement(): Promise<string> {
+        let elementDraggableBox = await this.getElement(this.draggableElement);
+        return elementDraggableBox.getAttribute("style");
     }
-
 
 
 }
+
 export default new DragAndDropPage();

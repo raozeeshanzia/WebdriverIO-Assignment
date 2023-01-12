@@ -1,93 +1,34 @@
-import ElementUtil from '../../utils/elementUtil.js'
 import Page from './page.js';
-import formData from '../data/formData.json' assert { type: "json" };
 import WebTableUtil from "../../utils/WebTableUtil.js";
 import * as path from "path";
+import {States} from "../../enums/states";
 
 
 class FormPage extends Page {
+
     /**
-     * define selectors using getter methods
+     * define selectors using  methods
      */
 
-    public get inputFirstName() {
-        return $("#firstName");
-    }
+    selectorPractiseFormBtn: string = ".show .btn-light";
+    selectorInputFirstname: string = "#firstName";
+    selectorInputLastName: string = "#lastName";
+    selectorInputEmail: string = "#userEmail";
+    selectorInputMobileNumber: string = "#userNumber";
+    selectorInputSubject: string = "input#subjectsInput";
+    selectorInputCurrentAddress: string = "#currentAddress";
+    selectorInputDOB: string = "input#dateOfBirthInput";
+    selectorFileUpload: string = "input#uploadPicture";
+    selectorInputYear: string = ".react-datepicker__year-select";
+    selectorInputMonth: string = ".react-datepicker__month-select";
+    selectorState: string = "#state";
+    selectorCity: string = "#city";
+    selectorSubmitBtn: string = "#submit";
+    selectorAllFormData: string = "tbody tr td";
+    selectorDateFirst: string = "div[role='listbox'] > div:nth-of-type(1) > div:nth-of-type(2)" //I know this wrong but having issues in finding path
 
-    public get inputLastName() {
-        return $("#lastName");
-    }
 
-    public get inputUserEmail() {
-        return $("#userEmail");
-    }
-
-    public get inputMobileNumber() {
-        return $("#userNumber");
-    }
-
-    public get inputSubject() {
-        return $("input#subjectsInput");
-    }
-
-    public get inputCurrentAddress() {
-        return $("#currentAddress");
-    }
-
-    public get ListOfCheckBoxes() {
-        return $$(".custom-checkbox");
-    }
-
-    public get inputDOB() {
-        return $("input#dateOfBirthInput");
-    }
-
-    public get fileUploadBtn() {
-        return $("input#uploadPicture");
-    }
-
-    public get inputYear() {
-        return $(".react-datepicker__year-select");
-    }
-
-    public get inputMonth() {
-        return $(".react-datepicker__month-select")
-    }
-
-    public get stateElement() {
-        return $("#state");
-    }
-
-    public get cityElement() {
-        return $("#city")
-    }
-
-    public  get stateRajistan() {
-        return $("#react-select-3-option-3");
-    }
-
-    public get cityLucknow() {
-        return $("#react-select-3-option-3");
-    }
-
-    public get submitBtn() {
-        return $("#submit");
-    }
-
-    public get firstDateOfJan() {
-        return $("div[role='listbox'] > div:nth-of-type(1) > div:nth-of-type(2)")
-    }
-
-    public get listOfGender() {
-        return $$(".custom-radio")
-
-    }
-
-    public get allFormData() {
-        return $$("tbody tr td");
-    }
-
-    public get successMeassage() {
+    get successMessage() {
         return $("div#example-modal-sizes-title-lg");
     }
 
@@ -97,94 +38,121 @@ class FormPage extends Page {
      * e.g. to login using username and password
      */
 
+
+
+    public async clickOnPractiseForm() {
+        let elementPractiseFormBtn = await this.getElement(this.selectorPractiseFormBtn);
+        await elementPractiseFormBtn.click();
+    }
+
     public async setValueOfFirstName(firstName: string) {
-        await ElementUtil.setValue(await this.inputFirstName, firstName);
+        let elementInputFirstName = await this.getElement(this.selectorInputFirstname);
+        await elementInputFirstName.setValue(firstName);
     }
 
     public async setValueOfLastName(lastName: string) {
-        await ElementUtil.setValue(await this.inputLastName, lastName);
+        let elementInputLastName = await this.getElement(this.selectorInputLastName);
+        await elementInputLastName.setValue(lastName);
     }
 
     public async setValueOfUserEmail(userEmail: string) {
-        await ElementUtil.setValue(await this.inputUserEmail, userEmail);
+        let elementInputEmail = await this.getElement(this.selectorInputEmail);
+        await elementInputEmail.setValue(userEmail);
     }
 
     public async setValueOfMobileNumber(mobileNumber: number) {
-        await ElementUtil.setValue(await this.inputMobileNumber, mobileNumber);
+        let elementInputMobileNumber = await this.getElement(this.selectorInputMobileNumber);
+        await elementInputMobileNumber.setValue(mobileNumber);
     }
 
     public async setValueOfCurrentAddress(currentAddress: string) {
-        await ElementUtil.setValue(await this.inputCurrentAddress, currentAddress);
+        let elementInputCurrentAddress = await this.getElement(this.selectorInputCurrentAddress);
+        await elementInputCurrentAddress.setValue(currentAddress);
 
     }
 
-    public async clickOnGenderRadioBtn(attributeValue : any) {
-        await ElementUtil.clickOnElement(await ElementUtil.getElement(attributeValue))
+    public async getRadioBtn(attributeValue: any): Promise<WebdriverIO.Element> {
+        return $(`input[value="${attributeValue}"]`)
+    }
+
+    public async clickOnGenderRadioBtn(attributeValue: string) {
+        let elementRadioBtn = await this.getRadioBtn(attributeValue);
+        await elementRadioBtn.click();
+    }
+
+    public async getCheckBoxBtn(attributeValue: any): Promise<WebdriverIO.Element> {
+        return $(`input[value="${attributeValue}"]`)
     }
 
     public async selectHobbiesCheckBox(nameOfCheckBox: string) {
-        let listOfCheckBoxes = await this.ListOfCheckBoxes;
-        if (nameOfCheckBox == formData.hobbies[1]) {
-            await ElementUtil.clickOnElement(listOfCheckBoxes[1])
-        }else if(nameOfCheckBox == formData.hobbies[3]) {
-            await ElementUtil.clickOnElement(listOfCheckBoxes[3])
-        }else if(nameOfCheckBox == formData.hobbies[2]) {
-            await ElementUtil.clickOnElement(listOfCheckBoxes[2])
-        }else {
-            console.log("Give name is not in list")
-        }
+        let elementCheckBox = await this.getCheckBoxBtn(nameOfCheckBox);
+        await elementCheckBox.click();
+
     }
 
-    public async selectGender(nameOfGender: string) {
-        let listOfRadioOptions = await this.listOfGender;
-        if (nameOfGender == formData.gender[1]) {
-            await ElementUtil.clickOnElement(listOfRadioOptions[1])
-        }else if(nameOfGender == formData.gender[2]) {
-            await ElementUtil.clickOnElement(listOfRadioOptions[2])
-        }else if(nameOfGender == formData.gender[3]) {
-            await ElementUtil.clickOnElement(listOfRadioOptions[3])
-        }else {
-            console.log("Give name is not in list")
-        }
+    public async selectDropDownValue(selectElement: WebdriverIO.Element, attributeName: string, attributeValue: string) {
+        await selectElement.waitForExist();
+        await selectElement.selectByAttribute(attributeName, attributeValue);
     }
+
 
     public async setValueOfDOB(monthName: string, year: string) {
-        await ElementUtil.clickOnElement(await this.inputDOB);
-        await ElementUtil.selectDropDownValue(await this.inputYear, year);
-        await ElementUtil.selectDropDownValue(await this.inputMonth, monthName);
-        await ElementUtil.clickOnElement(await this.firstDateOfJan);
-        
+        let elementInputBOD = await this.getElement(this.selectorInputDOB);
+        await elementInputBOD.click();
+        let elementInputYear = await this.getElement(this.selectorInputYear);
+        await this.selectDropDownValue(elementInputYear, "value", year);
+        let elementInputMonth = await this.getElement(this.selectorInputMonth);
+        await this.selectDropDownValue(elementInputMonth, "value", monthName);
+        let elementFirstDate = await this.getElement(this.selectorDateFirst);
+        await elementFirstDate.click();
+
     }
 
-    public async selectState() {
-        await ElementUtil.clickOnElement(await this.stateElement);
-        await ElementUtil.clickOnElement(await this.stateRajistan);
+    public async selectState(nameofState: States) {
+        let elementStateField = await this.getElement(this.selectorState);
+        await elementStateField.click();
+        let elementState = await $(`#react-select-3-option-
+
+        "${nameofState}"`);
+        await elementState.click();
     }
 
+
+    // city field is not accessible
     public async selectCity() {
-        await ElementUtil.clickOnElement(await this.cityElement);
-        await ElementUtil.clickOnElement(await this.cityLucknow);
+        let elementCityField = await this.getElement(this.selectorCity);
+        await elementCityField.click();
     }
 
     public async clickOnsubmitBtn() {
-        await ElementUtil.clickOnElement(await this.submitBtn);
+        let elementSubmitBtn = await this.getElement(this.selectorSubmitBtn);
+        await elementSubmitBtn.click();
     }
 
-    public async uploadFile() {
-        const newPath = path.join(__dirname, '/test/data/PNG.png');// const filePath = '/Users/raozeeshanahmed/Documents/WebDriverIOAssignment/test/data/PNG.png'
+    public async uploadFile(filePath: string) {
+        const newPath = path.join(__dirname, filePath);// const filePath = '/Users/raozeeshanahmed/Documents/WebDriverIOAssignment/test/data/PNG.png'
         const remoteFilePath = await browser.uploadFile(newPath)
-        await ElementUtil.setValue(await this.fileUploadBtn, remoteFilePath);
+        let elementFileUpload = await this.getElement(this.selectorFileUpload);
+        await elementFileUpload.setValue(remoteFilePath);
     }
 
-    public async verifyDataInForm(formValue: any): Promise<boolean> {
-        return await WebTableUtil.verifyValueExistInTable(await this.allFormData, formValue)
+    public async checkDataInForm(formValue: any): Promise<boolean> {
+        let allFormData = await this.getArrayOfElements(this.selectorAllFormData);
+        return await WebTableUtil.verifyValueExistInTable(allFormData, formValue)
     }
 
     public async verifyFormSubmitSuccessfully(): Promise<boolean> {
-        await this.successMeassage.waitForExist();
-        return this.successMeassage.isDisplayed();
+        await this.successMessage.waitForExist()
+        return await this.successMessage.isDisplayed();
     }
 
+}
+
+export enum RadioButton {
+    Male,
+    Female,
+    others
 
 }
+
 export default new FormPage();

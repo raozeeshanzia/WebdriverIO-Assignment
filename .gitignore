@@ -2,4 +2,6 @@ node_modules/
 allure-results/
 config/
 .idea/
+wdio-safaridriver.log
+package-lock.json
 

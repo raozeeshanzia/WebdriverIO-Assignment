@@ -1,4 +1,11 @@
-All Page Define in test/pageObject folder.
-All Util Class define in util folder
-Test data define in test/data folder
-To run test cases run "npm run wido"
+# Automation Assignment
+## WebdriverIO framework is used to write test cases for this assignment.
+
+### Dependencies:
+- NodeJs
+- WebdriverIO
+
+*Project structured in the way that all of the pages can be found in 'test/pageObject' directory,
+Data which is used for running these tests can be found in 'test/data' directory.
+
+*use 'npm run wido' command to run the tests.
