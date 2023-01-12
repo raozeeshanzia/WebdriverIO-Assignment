@@ -148,11 +148,5 @@ class FormPage extends Page {
 
 }
 
-export enum RadioButton {
-    Male,
-    Female,
-    others
-
-}
 
 export default new FormPage();
