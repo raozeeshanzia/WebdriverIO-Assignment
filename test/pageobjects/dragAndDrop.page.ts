@@ -1,7 +1,7 @@
 import Page from "./page.js";
 
 
-class DragAndDropPage extends Page {
+export class DragAndDropPage extends Page {
     /**
      * define selectors using String methods
      */
@@ -36,7 +36,5 @@ class DragAndDropPage extends Page {
         return elementDraggableBox.getAttribute("style");
     }
 
-
 }
 
-export default new DragAndDropPage();

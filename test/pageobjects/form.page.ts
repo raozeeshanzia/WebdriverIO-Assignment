@@ -2,9 +2,10 @@ import Page from './page.js';
 import WebTableUtil from "../../utils/WebTableUtil.js";
 import * as path from "path";
 import {States} from "../../enums/states";
+import {Cities} from "../../enums/cities";
 
 
-class FormPage extends Page {
+export class FormPage extends Page {
 
     /**
      * define selectors using  methods
@@ -111,17 +112,17 @@ class FormPage extends Page {
     public async selectState(nameofState: States) {
         let elementStateField = await this.getElement(this.selectorState);
         await elementStateField.click();
-        let elementState = await $(`#react-select-3-option-
-
-        "${nameofState}"`);
+        let elementState = await $(`#react-select-3-option-"${nameofState}"`);
         await elementState.click();
     }
 
 
     // city field is not accessible
-    public async selectCity() {
+    public async selectCity(nameOfCity: Cities) {
         let elementCityField = await this.getElement(this.selectorCity);
         await elementCityField.click();
+        let elementCity = await $(`#react-select-3-option-"${nameOfCity}"`);
+        await elementCity.click();
     }
 
     public async clickOnsubmitBtn() {
@@ -147,6 +148,3 @@ class FormPage extends Page {
     }
 
 }
-
-
-export default new FormPage();

@@ -1,7 +1,7 @@
 import Page from "./page.js";
 import WebTableUtil from "../../utils/WebTableUtil.js";
 
-class ElementPage extends Page {
+export class ElementPage extends Page {
     /**
      * define selectors using methods
      */
@@ -83,5 +83,3 @@ class ElementPage extends Page {
 
 
 }
-
-export default new ElementPage();

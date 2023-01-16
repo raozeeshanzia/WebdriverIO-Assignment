@@ -1,6 +1,6 @@
 import Page from "./page.js";
 
-class ProgressBarPage extends Page {
+export class ProgressBarPage extends Page {
     /**
      * define selectors using methods
      */
@@ -37,5 +37,3 @@ class ProgressBarPage extends Page {
 
 
 }
-
-export default new ProgressBarPage();
