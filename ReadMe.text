@@ -1,0 +1,11 @@
+# Automation Assignment
+## WebdriverIO framework is used to write test cases for this assignment.
+
+### Dependencies:
+- NodeJs
+- WebdriverIO
+
+*Project structured in the way that all of the pages can be found in 'test/pageObject' directory,
+Data which is used for running these tests can be found in 'test/data' directory.
+
+*use 'npm run wido' command to run the tests.
